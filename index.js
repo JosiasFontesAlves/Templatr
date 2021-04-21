@@ -5,18 +5,27 @@ function templatr(elems) {
     const { body } = document, t = res => body.innerHTML += res;
 
     [...arguments].forEach(el => {
-        if (typeof el == 'object') {
-            switch (Array.isArray(el)) {
-                case true: // se forem tagss vazias
-                    for (let x in el) {
-                        t(`<${el[x]}></${el[x]}>`);
+        switch (Array.isArray(el)) {
+            case true: // se forem tags vazias
+                for (let x in el) {
+                    t(`<${el[x]}></${el[x]}>`);
+                }
+                break;
+            default: // tags com atributos
+                for (let tag in el) {
+                    let atr = [];
+                    for (let k in el[tag]) {
+                        atr.push(`${k}="${el[tag][k]}"`);
                     }
-                    break;
-            }
+                    t(`<${tag} ${atr.join(' ')}></${tag}>`);
+                }
+                break;
         }
     });
 }
 
-templatr(
+templatr( // Teste básico
     ['header', 'main', 'footer'],
+    { div: { id: 'zk', class: 'mts' } },
+    { div: { id: 'teste', class: 'm84ts' } },
 );
