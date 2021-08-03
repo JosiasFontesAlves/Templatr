@@ -1,8 +1,13 @@
 # Templatr
-Um construtor de template básico para escrever HTML usando objetos e arrays  javaScript
+Um construtor de template básico para escrever HTML usando objetos e arrays javaScript
+
 ## Sintaxe 
-  Escreva o nome das tags dentro de um array, caso queira colocar tags vazias. <br>
-  EX: templatr(['header', 'main', 'footer']); <br>
-  
-  Ou use objetos se a tag precisar atributos. <br>
-  EX: templatr({ div: { id: 'teste' } });
+  Use strings e objetos para construir HTML 
+
+EX: templatr({ div: { id: 'root' } });
+
+* Caso sejam tags vazias, use strings para criá-las. Ex: templatr('main');
+* Caso precise de atributos, use objetos aninhados. Ex: templatr({ main: { class: 'flex' } });
+
+## Exemplo de site básico: 
+templatr('header', { div: { id: 'root' } }, 'footer');  
