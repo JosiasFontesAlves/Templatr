@@ -1,15 +1,16 @@
 function templatr() {
-    const { body } = document;
-    [...arguments].forEach(elem => {
-        let atr = [], res;
-        for (let tag in elem) {
-            for (let key in elem[tag])
-                atr.push(`${key}="${elem[tag][key]}"`);
+    const { body } = document, res = [];
 
-            res = typeof elem == 'string' ? `<${elem}></${elem}>` : `<${tag} ${atr.join(' ')}></${tag}>`;
+    [...arguments].forEach(elem => res.push(document.createElement(typeof elem === 'string' ? elem : Object.keys(elem))));
+
+    res.forEach((el, i) => {
+        if (typeof arguments[i] === 'object') {
+            for (let tag in arguments[i]) {
+                for (let atr in arguments[i][tag])
+                    el[atr] = arguments[i][tag][atr];
+            }
         }
-        body.innerHTML += res;
     });
-}
 
-templatr('header', { div: { id: 'root' } }, 'footer');
+    body.append(...res);
+}

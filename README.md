@@ -1,5 +1,5 @@
 # Templatr
-Um construtor de template básico para escrever HTML usando objetos e arrays javaScript
+Um construtor de template básico para escrever HTML usando objetos e strings javaScript
 
 ## Sintaxe 
   Use strings e objetos para construir HTML 
